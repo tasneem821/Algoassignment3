@@ -22,9 +22,7 @@ public:
 };
 //get the minimum value and remove it from heap
 int MinHeap::extractMinNumber() {
-    if(heap.empty()==0){
-        cout<<"the heap is empty\n";
-    }
+
     int rootNumber = heap[0];
     heap[0]=heap.back();
     heap.pop_back();
@@ -69,9 +67,7 @@ public:
 };
 
 int Maxheap::extractMaxNumber() {
-    if(heap.empty()==0){
-        cout<<"the heap is empty\n";
-    }
+
     int rootNumber = heap[0];
     heap[0]=heap.back();
     heap.pop_back();
@@ -128,4 +124,3 @@ int main(){
 
     cout << "MaxHeap root (Max): " << maxHeap.extractMaxNumber() << endl;
 }
-
