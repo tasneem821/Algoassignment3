@@ -90,6 +90,17 @@ int main()
         }
         else if(c==3)
         {
+               vector<int>nums;
+     cout<<"please enter the size of array\n";
+     int n;
+     cin>>n;
+     cout<<"please enter the numbers in array \n";
+     for(int i=0;i<n;i++){
+         int x;
+         cin>>x;
+         nums.push_back(x);
+     }
+     sort(nums.begin(),nums.end());
    cout<<"pls enter the target number\n";
              int target;
              cin>>target;
@@ -103,6 +114,17 @@ int main()
         }
         else if(c==4)
         {
+               vector<int>nums;
+     cout<<"please enter the size of array\n";
+     int n;
+     cin>>n;
+     cout<<"please enter the numbers in array \n";
+     for(int i=0;i<n;i++){
+         int x;
+         cin>>x;
+         nums.push_back(x);
+     }
+     sort(nums.begin(),nums.end());
       cout<<"pls enter the target number\n";
              int target;
              cin>>target;
