@@ -2,8 +2,20 @@
 #include "vector"
 #include "algorithm"
 using namespace std;
+typedef long long ll;
 
-int RecursiveSearch(int arr[] , int n , int value , int i=0)
+// Iterative Sequential Search
+ll sequentialSearch( vector<ll>& v, ll target) {
+    for (size_t i = 0; i < v.size(); ++i) {
+        if (v[i] == target) {
+            return i;  // Return the index if target is found
+        }
+    }
+    // Return -1 if target is not found
+    return -1;
+}
+// Recursive Sequential Search
+ll RecursiveSearch(ll arr[] , ll n , ll value , ll i=0)
 {
     if(i>=n)
         return -1;
@@ -12,11 +24,11 @@ int RecursiveSearch(int arr[] , int n , int value , int i=0)
     return RecursiveSearch(arr , n , value , i+1);
 }
 // find number in sorted array using binary search but iterative
-int iterative_binary_search(vector<int>&numbers,int target){
-    int least_number=0;
-    int highest_number=numbers.size()-1;
+ll iterative_binary_search(vector<ll>&numbers,ll target){
+    ll least_number=0;
+    ll highest_number=numbers.size()-1;
     while (least_number<=highest_number){
-        int mid_number= least_number+(highest_number-least_number)/2;
+        ll mid_number= least_number+(highest_number-least_number)/2;
         if(numbers[mid_number]==target){
             return mid_number;
         }
@@ -30,10 +42,10 @@ int iterative_binary_search(vector<int>&numbers,int target){
     return -1;
 }
 // recursive binary search that return the target number from sorted array
-int recursive_binary_search(vector<int>&numbers,int target,int least_number,int highest_number){
+ll recursive_binary_search(vector<ll>&numbers,ll target,ll least_number,ll highest_number){
 
     if (least_number<=highest_number){
-        int mid_number= least_number+(highest_number-least_number)/2;
+        ll mid_number= least_number+(highest_number-least_number)/2;
         if(numbers[mid_number]==target){
             //base case
             return mid_number;
@@ -57,9 +69,8 @@ void displayMenu() {
     cout << "4. Recursive Binary Search\n";
     cout << "5. Exit\n";
 }
-int main()
-{
-    int c;
+int main(){
+    ll c;
     do{
         displayMenu();
         cout<<"Enter the choice: ";
@@ -67,23 +78,42 @@ int main()
 
         if(c==1)
         {
-
+            vector<ll>nums;
+            cout<<"please enter the size of array:\n";
+            ll n;
+            cin>>n;
+            cout<<"please enter the numbers in array :\n";
+            for(ll i=0;i<n;i++){
+                ll x;
+                cin>>x;
+                nums.push_back(x);
+            }
+            ll target;
+            cout<<"Enter target number:  ";
+            cin>>target;
+            ll res= sequentialSearch(nums,target);
+            if(res<0){
+                cout<<"the target number is not found!\n";
+            }
+            else {
+                cout << "the number is found in index " << res << " and its " << nums[res] << "\n";
+            }
         }
         else if(c==2)
         {
-            int n;
+            ll n;
             cout<<"Enter the size of the array: ";
             cin>>n;
-            int arr[n];
+            ll arr[n];
             cout<<"Enter the values of the array: ";
-            for(int i=0;i<n;i++)
+            for(ll i=0;i<n;i++)
             {
                 cin>>arr[i];
             }
             cout<<"Enter the target value you want to search about: ";
-            int x;
+            ll x;
             cin>>x;
-            int result = RecursiveSearch(arr , n , x );
+            ll result = RecursiveSearch(arr , n , x );
             if(result == -1)
                 cout<<"The target value not found !";
             else
@@ -92,23 +122,23 @@ int main()
         }
         else if(c==3)
         {
-            vector<int>nums;
-            cout<<"please enter the size of array\n";
-            int n;
+            vector<ll>nums;
+            cout<<"please enter the size of array: \n";
+            ll n;
             cin>>n;
-            cout<<"please enter the numbers in array \n";
-            for(int i=0;i<n;i++){
-                int x;
+            cout<<"please enter the numbers in array: \n";
+            for(ll i=0;i<n;i++){
+                ll x;
                 cin>>x;
                 nums.push_back(x);
             }
             sort(nums.begin(),nums.end());
-            cout<<"pls enter the target number\n";
-            int target;
+            cout<<"pls enter the target number:\n";
+            ll target;
             cin>>target;
-            int res = iterative_binary_search(nums,target);
+            ll res = iterative_binary_search(nums,target);
             if(res<0){
-                cout<<"the target number is not found\n";
+                cout<<"the target number is not found!\n";
             }
             else{
                 cout<<"the number is found in index "<<res<<" and its "<<nums[res]<<"\n";
@@ -116,23 +146,23 @@ int main()
         }
         else if(c==4)
         {
-            vector<int>nums;
-            cout<<"please enter the size of array\n";
-            int n;
+            vector<ll>nums;
+            cout<<"please enter the size of array:\n";
+            ll n;
             cin>>n;
-            cout<<"please enter the numbers in array \n";
-            for(int i=0;i<n;i++){
-                int x;
+            cout<<"please enter the numbers in array:\n";
+            for(ll i=0;i<n;i++){
+                ll x;
                 cin>>x;
                 nums.push_back(x);
             }
             sort(nums.begin(),nums.end());
             cout<<"pls enter the target number\n";
-            int target;
+            ll target;
             cin>>target;
-            int res = recursive_binary_search(nums,target,0,nums.size()-1);
+            ll res = recursive_binary_search(nums,target,0,nums.size()-1);
             if(res<0){
-                cout<<"the target number is not found\n";
+                cout<<"the target number is not found!\n";
             }
             else{
                 cout<<"the number is found in index "<<res<<" and its "<<nums[res]<<"\n";
