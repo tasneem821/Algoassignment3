@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <optional>
 
 using namespace std;
 
@@ -19,7 +20,12 @@ public:
     int extractMinNumber();
     void insertNumber(int number);
     void heapify(int index);
+    bool isEmpty() const;
 };
+
+bool MinHeap::isEmpty() const {
+    return heap.empty();
+}
 
 // Get the minimum value and remove it from heap
 int MinHeap::extractMinNumber() {
@@ -62,7 +68,13 @@ public:
     int extractMaxNumber();
     void insertNumber(int number);
     void heapify(int index);
+    bool isEmpty() const;
 };
+
+
+bool MaxHeap::isEmpty() const {
+    return heap.empty(); // Check if the heap is empty
+}
 
 int MaxHeap::extractMaxNumber() {
     int rootNumber = heap[0];
@@ -98,6 +110,37 @@ void MaxHeap::heapify(int index) {
         heapify(largestNumber);
     }
 }
+// PriorityQueue class using MaxHeap
+class PriorityQueue {
+private:
+    MaxHeap maxHeap;
+
+public:
+    void insert(int priority);
+    void top();
+    bool isEmpty() const;
+};
+
+
+void PriorityQueue::insert(int priority) {
+    maxHeap.insertNumber(priority);
+}
+
+
+void PriorityQueue::top() {
+    if (maxHeap.isEmpty()) {
+        cout<<"Priority queue is empty!\n";
+    }
+    else {
+        cout<<maxHeap.extractMaxNumber()<<'\n';
+    }
+}
+
+// Check if the priority queue is empty
+bool PriorityQueue::isEmpty() const {
+    return maxHeap.isEmpty();
+}
+
 
 // HeapSort function using MaxHeap
 void heapSort(vector<int> &arr) {
@@ -141,6 +184,17 @@ int main() {
         cout << num << " ";
     }
     cout << endl;
+
+    // Priority queue
+    PriorityQueue pq;
+    pq.insert(5);
+    pq.insert(10);
+    pq.insert(7);
+
+    pq.top();
+    pq.top();
+    pq.top();
+    pq.top();
 
     return 0;
 }
